@@ -1,0 +1,41 @@
+name: Deploy on PR Merge
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'CI:Deploy')
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20
+
+      - name:  installation of nmp 
+        run: npm install
+
+      - name: Start Local Devnet
+        run: |
+          docker run -d --name ethereum-node -p 8545:8545 -p 30303:30303 vatman/client-go --dev --http --http.api eth,web3,net --http.corsdomain "http://remix.ethereum.org"
+
+      - name: Deploy Hardhat Project
+        run: |
+          working-directory: ./hardhat
+          npx hardhat run scripts/deploy.js --network localhost
+
+      - name: Build Docker Image
+        run: |
+          echo "Building the Docker image..."
+
+      - name: Login to Docker Registry
+        run: |
+          echo "Logging in to Docker registry..."
