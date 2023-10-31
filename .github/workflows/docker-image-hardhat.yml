@@ -27,6 +27,7 @@ jobs:
       - name: Deploy Hardhat Project
         working-directory: ./hardhat
         run: |
+          npm install --save-dev hardhat
           npx hardhat run scripts/deploy.js --network localhost
 
       - name: Build Docker Image
