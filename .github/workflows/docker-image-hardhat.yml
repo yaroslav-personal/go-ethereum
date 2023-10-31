@@ -20,10 +20,6 @@ jobs:
         with:
           node-version: '20.9'
 
-      - name:  installation of nmp 
-        run: npm install
-
-
       - name: Start Local Devnet
         run: |
           docker run -d --name ethereum-node         -p 8545:8545 -p 30303:30303     vatman/client-go --dev --http --http.api eth,web3,net --http.corsdomain "http://remix.ethereum.org"
