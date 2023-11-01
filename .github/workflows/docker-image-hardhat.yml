@@ -37,10 +37,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
     
       - name: Export the Docker image
-        run: docker commit ethereum-node client-go-hardhat:$(date +%s)
+        run: docker commit ethereum-node client-go-hardhat:latest
 
       - name: Export and push
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: vatman/client-go-hardhat:$(date +%s)
+          tags: vatman/client-go-hardhat:latest
