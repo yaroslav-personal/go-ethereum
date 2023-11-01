@@ -38,5 +38,5 @@ jobs:
 
       - name: Upload Docker Image
         run: |
-          docker tag ethereum-node  vatman/client-go-hardhat:latest
+          docker commit ethereum-node client-go-hardhat:latest
           docker push vatman/client-go-hardhat:latest
