@@ -30,11 +30,13 @@ jobs:
           npm install --save-dev hardhat
           npx hardhat run scripts/deploy.js --network localhost
 
-      - name: Build Docker Image
-        run: |
-          echo "Building the Docker image..."
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Login to Docker Registry
+      - name: Upload Docker Image
         run: |
-
-          echo "Logging in to Docker registry..."
+          docker tag ethereum-node  vatman/client-go-hardhat:latest
+          docker push vatman/client-go-hardhat:latest
