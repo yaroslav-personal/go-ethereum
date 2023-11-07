@@ -19,7 +19,7 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v3          
         with:
-          images: name/app
+          images: app
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
