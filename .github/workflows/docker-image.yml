@@ -17,8 +17,9 @@ jobs:
 
       - name: Docker metadata
         id: metadata
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v3          
         with:
+          images: name/app
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
