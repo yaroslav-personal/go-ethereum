@@ -1,15 +1,10 @@
-name: Manual trigger
-
-on:
-  workflow_dispatch:
-
-
 name: Docker Image Build
 
 on:
   pull_request:
     branches: [ "master" ]
     types: [ closed ]
+  workflow_dispatch:
 
 jobs:
   Build:
