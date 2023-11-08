@@ -6,7 +6,7 @@ on:
     types: [ closed ]
 
 env:
-  TEST_TAG: vatman/client-go-hardhat-test:latest,  vatman/client-go-hardhat-test:2.0.0
+  TEST_TAG: vatman/client-go-hardhat-test:latest
   LATEST_TAG:  vatman/client-go-hardhat:latest,  vatman/client-go-hardhat:2.0.0
 
 jobs:
@@ -56,7 +56,7 @@ jobs:
           npx hardhat test
 
       - name: Export the Docker image
-        run: docker commit ethereum-node ${{ env.LATEST_TAG }}
+        run: docker commit ethereum-node
 
       - name: Export and push
         run: docker push ${{ env.LATEST_TAG }}
