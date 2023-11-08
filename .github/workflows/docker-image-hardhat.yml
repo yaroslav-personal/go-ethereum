@@ -7,7 +7,7 @@ on:
 
 env:
   TEST_TAG: 1.0.1
-  LATEST_TAG: 2.0.1
+  LATEST_TAG: 2.0.0
   IMAGE_NAME: vatman/client-go-hardhat
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set Up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '20.9'
 
